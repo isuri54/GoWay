@@ -1,0 +1,45 @@
+import 'dart:async';
+import 'dart:math';
+
+class PaymentService {
+  static final PaymentService _instance = PaymentService._internal();
+  factory PaymentService() => _instance;
+  PaymentService._internal();
+
+  Future<bool> processPayment({
+    required String userId,
+    required double amount,
+    required String depotAccount,
+    String? bookingId,
+  }) async {
+    await Future.delayed(const Duration(seconds: 2)); // Simulate API delay
+    
+    // Simulate random failures for testing (10% chance)
+    final random = Random();
+    if (random.nextInt(10) == 0) {
+      return false;
+    }
+    
+    // In real app, this would make actual API calls to:
+    // 1. Verify user balance
+    // 2. Deduct from wallet
+    // 3. Credit to depot account
+    // 4. Create transaction record
+    
+    return true;
+  }
+
+  Future<bool> topUpWallet({
+    required String userId,
+    required double amount,
+    required String cardLast4,
+  }) async {
+    await Future.delayed(const Duration(seconds: 2));
+    return true;
+  }
+
+  Future<double> getWalletBalance(String userId) async {
+    await Future.delayed(const Duration(seconds: 1));
+    return 10000.0; // Mock balance
+  }
+}
